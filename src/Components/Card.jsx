@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import clsx from 'clsx';
 
 const today = new Date().toISOString().slice(0, 10); // "2025-06-11"
 
+// eslint-disable-next-line react/prop-types
 const Card = ({ id, date, image }) => {
   const [isOpened, setIsOpened] = useState(false);
 

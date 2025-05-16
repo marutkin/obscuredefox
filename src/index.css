@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Можно добавить кастомные стили */
 body {
   font-family: system-ui, sans-serif;
 }
