@@ -27,7 +27,6 @@ const footerStyle = {
 const layoutStyle = {
     height: '98vh',
     borderRadius: 8,
-    overflow: 'hidden',
     width: 'calc(100% - 8px)',
     maxWidth: 'calc(100% - 8px)',
 };
