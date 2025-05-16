@@ -6,11 +6,11 @@ import HeaderActions from './Components/HeaderActions';
 import { Layout } from 'antd';
 const { Header, Footer, Content } = Layout;
 
-import img1 from './assets/1.png'
-import img2 from './assets/2.png'
-import img3 from './assets/3.png'
-import img4 from './assets/4.png'
-import img5 from './assets/5.png'
+import img1 from './assets/p1.jpg'
+import img2 from './assets/p2.jpg'
+import img3 from './assets/p3.jpg'
+import img4 from './assets/p4.jpg'
+import img5 from './assets/p5.jpg'
 
 const headerStyle = {
     textAlign: 'center',
@@ -40,11 +40,11 @@ const layoutStyle = {
 };
 
 const cards = [
-    { id: 1, date: '2025-05-01', image: img1, title: 'Card 1', description: 'Description for card 1' },
-    { id: 2, date: '2025-05-11', image: img2, title: 'Card 2', description: 'Description for card 2' },
-    { id: 3, date: '2025-05-15', image: img3, title: 'Card 3', description: 'Description for card 3' },
-    { id: 4, date: '2025-06-17', image: img4, title: 'Card 4', description: 'Description for card 4' },
-    { id: 5, date: '2025-06-19', image: img5, title: 'Card 5', description: 'Description for card 5' },
+    { id: 1, date: '2025-05-12', image: img1, title: 'Искать', description: 'Где-то на балконе?' },
+    { id: 2, date: '2025-05-13', image: img2, title: 'Искать', description: 'Мам я хочу BMW! У нас уже есть BMW дома!' },
+    { id: 3, date: '2025-05-14', image: img3, title: 'Отгадать', description: 'Где это я?', question: ["lisovic", "lisović"], tip: "Этот населенный пункт не далеко от Белграда!", code: "Ну ты придумал, пиздец =)" },
+    { id: 4, date: '2025-05-15', image: img4, title: 'Подумоть', description: 'Возможно Плюша поможет?', question: ["42"], tip: "Это не ответ на вопрос, а ответ на вопрос жизни, вселенной и всего такого. Короче, число!", code: "Ступор мозговины" },
+    { id: 5, date: '2025-05-16', image: img5, title: 'Вопрос со звездочкой!!!', description: 'Сколько Даше сегодня годиков?!', question: ["30"], code: "С днем рождения, любимая Дашуля!!!" },
 ];
 
 const App = () => {

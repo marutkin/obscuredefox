@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Card as AntdCard, Button, Space, notification } from 'antd';
+import { Card as AntdCard, Typography, Form, Button, Space, Input, notification } from 'antd';
 const { Meta } = AntdCard;
 const today = new Date().toISOString().slice(0, 10); // "2025-06-11"
 
+const { Text } = Typography;
+
 // eslint-disable-next-line react/prop-types
-const Card = ({ id, date, image, title, description }) => {
+const Card = ({ id, date, image, title, description, question, tip, code }) => {
   const [isOpened, setIsOpened] = useState(false);
 
   useEffect(() => {
@@ -27,6 +29,36 @@ const Card = ({ id, date, image, title, description }) => {
     }
   };
 
+  const onFinish = (values) => {
+    // eslint-disable-next-line react/prop-types
+    if (question.includes(values.answer.toLocaleLowerCase())) {
+      notification.open({
+        message: 'Правильный ответ',
+        description: "Скажи Диме код: " + code,
+        placement: 'topRight',
+        type: 'success',
+        duration: 5,
+      });
+    } else {
+      notification.open({
+        message: 'Неправильный ответ',
+        description: tip,
+        placement: 'topRight',
+        type: 'error',
+        duration: 6,
+      });
+    }
+  }
+
+  const onFinishFailed = () => {
+    notification.open({
+      message: 'Ошибка',
+      description: 'Пожалуйста, введи корректные данные.',
+      placement: 'topRight',
+      duration: 6,
+    });
+  }
+
   return (
     <motion.div
       layout
@@ -46,6 +78,28 @@ const Card = ({ id, date, image, title, description }) => {
             cover={<img alt={`Card ${id}`} src={image} className="w-full h-full object-cover" />}
           >
             <Meta title={title} description={description} />
+            {question && <Space>
+              <Form
+                style={{ marginTop: "10px" }}
+                initialValues={{ remember: true }}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                autoComplete="off"
+              >
+                <Form.Item
+                  label="Отгадать и сказать код"
+                  name="answer"
+                  rules={[{ required: true, message: 'Введи хоть, что-нибудь!' }]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item label={null}>
+                  <Button type="primary" htmlType="submit">
+                    Принять
+                  </Button>
+                </Form.Item>
+              </Form>
+            </Space>}
           </AntdCard>
         ) : (
           <AntdCard
@@ -53,12 +107,11 @@ const Card = ({ id, date, image, title, description }) => {
             style={{ width: '100%' }}
             title={<Button block className="text-center font-bold text-xl p-4">
               <Space>
-                Открыть
-                ({new Date(date).toLocaleDateString()})
+                Подарочная карточка от <Text strong>{new Date(date).toLocaleDateString()}</Text>
               </ Space>
             </Button>}
           >
-            <Meta title={title} description={description} />
+            <Meta title={"Пока секрет"} />
           </AntdCard>
 
         )}
