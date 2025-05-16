@@ -30,17 +30,19 @@ const Card = ({ id, date, image, title, description }) => {
   return (
     <motion.div
       layout
+      style={{ width: "100%" }}
       className="w-64 h-80 m-4 cursor-pointer rounded-xl shadow-lg overflow-hidden border bg-white"
       onClick={handleClick}
     >
       <motion.div
         layout
+        style={{ width: "100%", marginBottom: "10px" }}
         className="h-full w-full flex items-center justify-center bg-gray-200"
       >
         {isOpened ? (
           <AntdCard
             hoverable
-            style={{ width: 240 }}
+            style={{ width: "100%" }}
             cover={<img alt={`Card ${id}`} src={image} className="w-full h-full object-cover" />}
           >
             <Meta title={title} description={description} />
@@ -48,10 +50,10 @@ const Card = ({ id, date, image, title, description }) => {
         ) : (
           <AntdCard
             hoverable
-            style={{ width: '350px' }}
-            title={<Button className="text-center font-bold text-xl p-4">
+            style={{ width: '100%' }}
+            title={<Button block className="text-center font-bold text-xl p-4">
               <Space>
-                popai
+                Открыть
                 ({new Date(date).toLocaleDateString()})
               </ Space>
             </Button>}
