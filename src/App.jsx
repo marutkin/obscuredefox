@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from './Components/Card';
-import { Flex, Layout } from 'antd';
+import { Flex, Space, Layout } from 'antd';
 const { Header, Footer, Content } = Layout;
 
 import img1 from './assets/1.png'
@@ -11,25 +11,21 @@ import img5 from './assets/5.png'
 
 const headerStyle = {
     textAlign: 'center',
-    color: '#fff',
     height: 64,
     paddingInline: 48,
     lineHeight: '64px',
-    backgroundColor: '#4096ff',
+    marginBottom: 16,
 };
 const contentStyle = {
     textAlign: 'center',
     minHeight: 120,
     lineHeight: '120px',
-    color: '#fff',
-    backgroundColor: '#0958d9',
 };
 const footerStyle = {
     textAlign: 'center',
-    color: '#fff',
-    backgroundColor: '#4096ff',
 };
 const layoutStyle = {
+    height: '98vh',
     borderRadius: 8,
     overflow: 'hidden',
     width: 'calc(100% - 8px)',
@@ -38,11 +34,11 @@ const layoutStyle = {
 
 const App = () => {
     const cards = [
-        { id: 1, date: '2025-05-01', image: img1 },
-        { id: 2, date: '2025-05-11', image: img2 },
-        { id: 3, date: '2025-05-15', image: img3 },
-        { id: 4, date: '2025-06-17', image: img4 },
-        { id: 5, date: '2025-06-19', image: img5 },
+        { id: 1, date: '2025-05-01', image: img1, title: 'Card 1', description: 'Description for card 1' },
+        { id: 2, date: '2025-05-11', image: img2, title: 'Card 2', description: 'Description for card 2' },
+        { id: 3, date: '2025-05-15', image: img3, title: 'Card 3', description: 'Description for card 3' },
+        { id: 4, date: '2025-06-17', image: img4, title: 'Card 4', description: 'Description for card 4' },
+        { id: 5, date: '2025-06-19', image: img5, title: 'Card 5', description: 'Description for card 5' },
     ];
 
 
@@ -51,11 +47,11 @@ const App = () => {
             <Layout style={layoutStyle}>
                 <Header style={headerStyle}>Header</Header>
                 <Content style={contentStyle}>
-                    <div className="flex flex-wrap justify-center p-8 bg-sky-50 min-h-screen">
+                    <Space wrap>
                         {cards.map(card => (
                             <Card key={card.id} {...card} />
                         ))}
-                    </div>
+                    </Space>
                 </Content>
                 <Footer style={footerStyle}>Footer</Footer>
             </Layout>

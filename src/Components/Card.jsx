@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-
+import { Card as AntdCard, Button, Space, notification } from 'antd';
+const { Meta } = AntdCard;
 const today = new Date().toISOString().slice(0, 10); // "2025-06-11"
 
 // eslint-disable-next-line react/prop-types
-const Card = ({ id, date, image }) => {
+const Card = ({ id, date, image, title, description }) => {
   const [isOpened, setIsOpened] = useState(false);
 
   useEffect(() => {
@@ -16,6 +17,13 @@ const Card = ({ id, date, image }) => {
     if (today >= date) {
       setIsOpened(true);
       localStorage.setItem(`card-${id}`, 'opened');
+    } else {
+      notification.open({
+        message: 'Секрет',
+        description: `Эта карточка откроется ${new Date(date).toLocaleDateString()}`,
+        placement: 'topRight',
+        duration: 2,
+      });
     }
   };
 
@@ -30,12 +38,27 @@ const Card = ({ id, date, image }) => {
         className="h-full w-full flex items-center justify-center bg-gray-200"
       >
         {isOpened ? (
-          <img src={image} alt={`Card ${id}`} className="w-full h-full object-cover" />
+          <AntdCard
+            hoverable
+            style={{ width: 240 }}
+            cover={<img alt={`Card ${id}`} src={image} className="w-full h-full object-cover" />}
+          >
+            <Meta title={title} description={description} />
+          </AntdCard>
         ) : (
-          <div className="text-center font-bold text-xl p-4">
-            🎁 Нажми, чтобы открыть <br />
-            (с {new Date(date).toLocaleDateString()})
-          </div>
+          <AntdCard
+            hoverable
+            style={{ width: '350px' }}
+            title={<Button className="text-center font-bold text-xl p-4">
+              <Space>
+                popai
+                ({new Date(date).toLocaleDateString()})
+              </ Space>
+            </Button>}
+          >
+            <Meta title={title} description={description} />
+          </AntdCard>
+
         )}
       </motion.div>
     </motion.div>
