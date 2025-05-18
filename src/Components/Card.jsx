@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Card as AntdCard, Typography, Form, Button, Space, Input, notification } from 'antd';
 const { Meta } = AntdCard;
-const today = new Date().toISOString().slice(0, 10); // "2025-06-11"
+const now = new Date();
+const today = now.getFullYear() + '-' +
+  String(now.getMonth() + 1).padStart(2, '0') + '-' +
+  String(now.getDate()).padStart(2, '0');
 
 const { Text } = Typography;
 
